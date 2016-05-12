@@ -29,6 +29,8 @@ def user_required(handler):
 class Backend(ndb.Model):
   username = ndb.StringProperty()
   confession = ndb.StringProperty()
+  likes = ndb.IntegerProperty(default=0)
+  dislikes = ndb.IntegerProperty(default=0)
   dateT = ndb.DateTimeProperty(auto_now_add=True)
 
 class BaseHandler(webapp2.RequestHandler):
@@ -278,9 +280,6 @@ class AuthenticatedHandler(BaseHandler):
   @user_required
   def get(self):
     self.redirect(self.uri_for('landingPage'))
-
-  
-
 
 class IndexLandingPage(BaseHandler):
   def render_front(self):
