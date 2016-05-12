@@ -65,88 +65,56 @@
 		</ul>
 	</div>
 
-
-		<div id="fh5co-menu" class="navbar">
+<div id="fh5co-main">
+		<div id="fh5co-subscribe">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><span>Home</span> <i></i></a>
-					<a href="index.html" class="navbar-brand"><span>Unveil</span></a>
+					<a href="#" class="navbar-brand"><span>Unveil</span></a>
 				</div>
 			</div>
-		</div>
-	</div>
-<!-- <a href="/forgot">Forgot password</a> -->
-
-				<div id="fh5co-subscribe">
-					<div class="container">
-						<div class="row animate-box">
-							<form action="/login" method="post">
-								<div class="col-md-4 col-sm-4"></div>
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-									<input type="text" class="form-control" placeholder="Username" name="username">
-									</div>
-								</div>
-								</div>
-								<br>
-								<div class="row animate-box">
-								<div class="col-md-4 col-sm-4"></div>
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Password" name="password">
-									</div>
-								</div><br><br><br>
-								<div class="col-md-4 col-sm-4"></div>
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-									&emsp;&emsp;&emsp;&emsp;
-									<input type="submit" class="btn btn-primary" value="Submit">
-									</div>
-								</div>
-							</form>
-							<div class="row">
-								<div class="col-md-4 col-sm-4"></div>
-								<div class="col-md-3 col-sm-3">
-								<!-- <a href="/forgot"></a></div> -->
+			<div class="row"><br><br></div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-3 fh5co-text">
+					<strong><center>Login to Unveil</center></strong>
+				</div>
+				<br><br>
+			</div>
+				<form action="/login" method="post">
+					<div class="row animate-box">
+					<div class="col-md-4 col-sm-4"></div>
+					<div class="col-md-3 col-sm-3">
+						<div class="form-group">
+						<input type="text" class="form-control" placeholder="Username" name="username">
+						</div>
+					</div>
+					</div>
+					<br>
+					<div class="row animate-box">
+						<div class="col-md-4 col-sm-4"></div>
+						<div class="col-md-3 col-sm-3">
+							<div class="form-group">
+							<input type="password" class="form-control" placeholder="Password" name="password">
 							</div>
 						</div>
 					</div>
-				</div>
-
-		<!-- <footer id="fh5co-footer" style="">
-			<div class="fh5co-overlay"></div>
-			<div class="fh5co-footer-content">
-				<div class="container">
+						<br>
 					<div class="row">
-						<div class="col-md-3 col-sm-4 col-md-push-3">
-							<h3 class="fh5co-lead">Identity</h3>
-							<ul>
-								{% if not user %}
-								<li><a href="/login">Sign in</a></li>
-								<li><a href="/signup">Sign Up</a></li>
-								{% else %}
-								<li><a href='/index'>{{ user.name }}</a> | <a href='/logout'>Logout</a></li>
-								{% endif %}
-								
-							</ul>
+						<div class="col-md-4 col-sm-4"></div>
+						<div class="col-md-3 col-sm-3">
+							<div class="form-group">
+							&emsp;&emsp;&emsp;
+							<input type="submit" class="btn btn-primary" value="Submit">
+							</div>
 						</div>
-						<div class="col-md-3 col-sm-4 col-md-push-3">
-							<h3 class="fh5co-lead">Developers</h3>
-							<ul>
-								<li><a href="https://www.facebook.com/teja.dt">Dharma Teja</a></li>
-								<li><a href="https://www.facebook.com/shweta.nallacheruvu">Shweta</a></li>
-								<li><a href="https://www.facebook.com/praveen.kiumar1993">Praveen</a></li>
-								<li><a href="https://www.facebook.com/pallavi.bulani">Pallavi</a></li>
-								<li><a href="https://www.facebook.com/venkatkarthikk">Venky</a></li>
-							</ul>
-						</div>
-
-						
 					</div>
-				</div>
-			</div>
-		</footer> -->
+				</form>
+
+		</div>
+	</div>
+</div>
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
