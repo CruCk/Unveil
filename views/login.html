@@ -1,24 +1,170 @@
-{% extends "main.html" %}
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Unveil &mdash; A website to confess anonymously</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Confess anonymously" />
+	<meta name="keywords" content="confessions, confess, free confessions, anonymous, anonymous confessions" />
 
-{% block maincontent %}
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
 
-<h1>Login</h1>
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
 
+	<!-- Google Webfonts -->
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Simple Line Icons-->
+	<link rel="stylesheet" href="css/simple-line-icons.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<!-- Salvattore -->
+	<link rel="stylesheet" href="css/salvattore.css">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+
+	</head>
+
+<body>
 {% if failed %}
 
     <strong>Login failed!</strong> Check your credentials and try again.
 
 {% endif %}
+	<div id="fh5co-offcanvass">
+		<ul>
+			<li class="active"><a href="/" data-nav-section="home">Home</a></li>
+			{% if not user %}
+			<li><a href="/login">Sign in</a></li>
+			<li><a href="/signup">Sign Up</a></li>
+			{% else %}
+			<li><a href='/index'>{{ user.name }}</a></li>
+			<li><a href='/logout'>Logout</a></li>
+			{% endif %}
+		</ul>
+	</div>
 
-<form class="form" action= "/login" method="POST">
-	<label for="username">Username</label>
-	<input type="text" value="{{ username }}" name="username"/>
-	<label for="password">Password</label>
-	<input type="password" name="password"/>
-	<button type="submit" class="btn">Login</button>
-</form>
 
-<a href="/forgot">Forgot password</a>
+		<div id="fh5co-menu" class="navbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><span>Home</span> <i></i></a>
+					<a href="index.html" class="navbar-brand"><span>Unveil</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- <a href="/forgot">Forgot password</a> -->
 
+				<div id="fh5co-subscribe">
+					<div class="container">
+						<div class="row animate-box">
+							<form action="/login" method="post">
+								<div class="col-md-4 col-sm-4"></div>
+								<div class="col-md-3 col-sm-3">
+									<div class="form-group">
+									<input type="text" class="form-control" placeholder="Username" name="username">
+									</div>
+								</div>
+								</div>
+								<br>
+								<div class="row animate-box">
+								<div class="col-md-4 col-sm-4"></div>
+								<div class="col-md-3 col-sm-3">
+									<div class="form-group">
+										<input type="password" class="form-control" placeholder="Password" name="password">
+									</div>
+								</div><br><br><br>
+								<div class="col-md-4 col-sm-4"></div>
+								<div class="col-md-3 col-sm-3">
+									<div class="form-group">
+									&emsp;&emsp;&emsp;&emsp;
+									<input type="submit" class="btn btn-primary" value="Submit">
+									</div>
+								</div>
+							</form>
+							<div class="row">
+								<div class="col-md-4 col-sm-4"></div>
+								<div class="col-md-3 col-sm-3">
+								<!-- <a href="/forgot"></a></div> -->
+							</div>
+						</div>
+					</div>
+				</div>
 
-{% endblock %}
+		<!-- <footer id="fh5co-footer" style="">
+			<div class="fh5co-overlay"></div>
+			<div class="fh5co-footer-content">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-sm-4 col-md-push-3">
+							<h3 class="fh5co-lead">Identity</h3>
+							<ul>
+								{% if not user %}
+								<li><a href="/login">Sign in</a></li>
+								<li><a href="/signup">Sign Up</a></li>
+								{% else %}
+								<li><a href='/index'>{{ user.name }}</a> | <a href='/logout'>Logout</a></li>
+								{% endif %}
+								
+							</ul>
+						</div>
+						<div class="col-md-3 col-sm-4 col-md-push-3">
+							<h3 class="fh5co-lead">Developers</h3>
+							<ul>
+								<li><a href="https://www.facebook.com/teja.dt">Dharma Teja</a></li>
+								<li><a href="https://www.facebook.com/shweta.nallacheruvu">Shweta</a></li>
+								<li><a href="https://www.facebook.com/praveen.kiumar1993">Praveen</a></li>
+								<li><a href="https://www.facebook.com/pallavi.bulani">Pallavi</a></li>
+								<li><a href="https://www.facebook.com/venkatkarthikk">Venky</a></li>
+							</ul>
+						</div>
+
+						
+					</div>
+				</div>
+			</div>
+		</footer> -->
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<!-- Owl Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- toCount -->
+	<script src="js/jquery.countTo.js"></script>
+	<!-- Main JS -->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
+

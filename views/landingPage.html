@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+
+{% block maincontent %}
+<h1>Post a confession</h1>
+<form method="post">
+	<label>Confess Here</label>
+	<textarea name="confess"></textarea>
+	<input type="submit">submit</input>
+</form>
+<hr>
+{% if backendDB %}
+	{% for item in backendDB %}
+		<h1>{{item.confession}}</h1>
+	{% endfor %}
+{% endif %}
+{% endblock %}

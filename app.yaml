@@ -5,6 +5,21 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+- url: /css
+  static_dir: css
+
+- url: /fonts
+  static_dir: fonts
+  
+- url: /images
+  static_dir: images
+  
+- url: /js
+  static_dir: js
+
+- url: /sass
+  static_dir: sass
+  
 - url: /signup
   script: main.app
   secure: always
@@ -19,6 +34,8 @@ handlers:
 
 - url: .*
   script: main.app
+  
+
 
 
 libraries:

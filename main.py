@@ -104,7 +104,17 @@ class BaseHandler(webapp2.RequestHandler):
 
 class MainHandler(BaseHandler):
   def get(self):
-    self.render_template('home.html')
+    back = Backend()
+    backendDB = Backend.query()
+    ad = backendDB.count()
+    logging.info("dude")
+    logging.info(ad)
+    da = self.user_model.query().count()
+    logging.info(da)
+    params = {}
+    params['confessCount'] = ad
+    params['userCount'] = da
+    self.render_template('index.html', params)
 
 class SignupHandler(BaseHandler):
   def get(self):
@@ -278,7 +288,7 @@ class IndexLandingPage(BaseHandler):
     backendDB = Backend.query()
     params = {}
     params['backendDB'] = backendDB
-    self.render_template('index.html', params)
+    self.render_template('landingPage.html', params)
 
   def get(self):
     auth = self.auth
