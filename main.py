@@ -6,9 +6,12 @@ from google.appengine.ext import ndb
 import logging
 import os.path
 import webapp2
+import json
+import datetime
 
 from webapp2_extras import auth
 from webapp2_extras import sessions
+from json import JSONEncoder
 
 from webapp2_extras.auth import InvalidAuthIdError
 from webapp2_extras.auth import InvalidPasswordError
@@ -109,8 +112,6 @@ class MainHandler(BaseHandler):
     back = Backend()
     backendDB = Backend.query()
     ad = backendDB.count()
-    logging.info("dude")
-    logging.info(ad)
     da = self.user_model.query().count()
     logging.info(da)
     params = {}
@@ -303,6 +304,19 @@ class IndexLandingPage(BaseHandler):
     confession.put()
     self.redirect(self.uri_for('landingPage'))
 
+class DateEncoder(JSONEncoder):
+    def default(self, obj):
+      if isinstance(obj, datetime.date):
+        return obj.isoformat()
+      return JSONEncoder.default(self, obj)
+
+class VoteHandler(BaseHandler):
+  def post(self):
+    data = json.loads(self.request.body)
+    story = Backend.get_by_id(int(data['storyKey']))
+    story.likes += 1
+    story.put()
+    self.response.out.write(json.dumps(({'story': story.to_dict()}), cls=DateEncoder))
 
 
 config = {
@@ -325,7 +339,8 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/logout', LogoutHandler, name='logout'),
     webapp2.Route('/forgot', ForgotPasswordHandler, name='forgot'),
     webapp2.Route('/authenticated', AuthenticatedHandler, name='authenticated'),
-    webapp2.Route('/index', IndexLandingPage, name='landingPage')
+    webapp2.Route('/index', IndexLandingPage, name='landingPage'),
+    webapp2.Route('/vote', VoteHandler, name='voting')
 ], debug=True, config=config)
 
 logging.getLogger().setLevel(logging.DEBUG)
