@@ -136,8 +136,7 @@ class SignupHandler(BaseHandler):
       email_address=email, name=name, password_raw=password,
       last_name=last_name, verified=False)
     if not user_data[0]: #user_data is a tuple
-      self.display_message('Unable to create user for email %s because of \
-        duplicate keys %s' % (user_name, user_data[1]))
+      self.display_message('The user %s alraedy exists' % user_name)
       return
     
     user = user_data[1]
@@ -318,6 +317,13 @@ class VoteHandler(BaseHandler):
     story.put()
     self.response.out.write(json.dumps(({'story': story.to_dict()}), cls=DateEncoder))
 
+class VoteHandlerDown(BaseHandler):
+  def post(self):
+    data = json.loads(self.request.body)
+    story = Backend.get_by_id(int(data['storyKey']))
+    story.dislikes += 1
+    story.put()
+    self.response.out.write(json.dumps(({'story': story.to_dict()}), cls=DateEncoder))
 
 config = {
   'webapp2_extras.auth': {
@@ -340,7 +346,8 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/forgot', ForgotPasswordHandler, name='forgot'),
     webapp2.Route('/authenticated', AuthenticatedHandler, name='authenticated'),
     webapp2.Route('/index', IndexLandingPage, name='landingPage'),
-    webapp2.Route('/vote', VoteHandler, name='voting')
+    webapp2.Route('/vote', VoteHandler, name='voting'),
+    webapp2.Route('/voteDown', VoteHandlerDown, name='votingDown')
 ], debug=True, config=config)
 
 logging.getLogger().setLevel(logging.DEBUG)

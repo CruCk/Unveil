@@ -117,7 +117,7 @@
 		{{story.confession}}
 		</div>
 		<div>
-            <a href="javascript:VoteUp('{{story.key.id}}');" >Like</a> <span class="voteCount badge">{{story.likes}}</span>
+            <a href="javascript:VoteUp('{{story.key.id}}');" >Like</a> <span class="voteCount badge">{{story.likes}}</span>  |  <a href="javascript:VoteDown('{{story.key.id}}');" >Dislike</a> <span class="voteCountD badge">{{story.dislikes}}</span>
         </div>
 	{% endfor %}
 </div>
@@ -128,6 +128,22 @@
                 $.ajax({
                   type: "POST",
                   url: "/vote",
+                  dataType: 'json',
+                  data: JSON.stringify({ "storyKey": storyKey})
+                })
+                .done(function( data ) { // check why I use done
+                    $("#refresh-this-div").load(location.href + " #refresh-this-div");
+                    // $("#refresh-this-div").html($("#refresh-this-div").html());
+
+                });
+            };
+        </script>
+
+        <script>
+            function VoteDown(storyKey){
+                $.ajax({
+                  type: "POST",
+                  url: "/voteDown",
                   dataType: 'json',
                   data: JSON.stringify({ "storyKey": storyKey})
                 })
